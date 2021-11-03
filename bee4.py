@@ -8,7 +8,6 @@ width=400
 height=600
 screen = pygame.display.set_mode((width,height))
   
-#load the images in dict
 images={}
 images["bg"] = pygame.image.load("bg.png").convert_alpha()
 images["base"] = pygame.image.load("base.png").convert_alpha()
@@ -30,6 +29,8 @@ class Bee:
     
     def display(self):
         screen.blit(images["bee"],self.bee) 
+        
+    #Create move() method to move the pipes to the left.    
 
 class Pipe:
     def __init__(self,x):
@@ -40,11 +41,11 @@ class Pipe:
     def display(self):
         screen.blit(images["pipe"],self.topPipe)
         screen.blit(images["pipe"],self.bottomPipe)
-        #pygame.draw.rect(screen,(250,150,50),pygame.Rect(200,self.gap,100,100))
+        
         
 bee=Bee()
 pipe1= Pipe(200)
-pipe2= Pipe(300)
+pipe2= Pipe(420)
 while True:    
     screen.fill((50,150,255))
     screen.blit(images["bg"],[0,0])
@@ -60,7 +61,9 @@ while True:
     groundx =groundx-5
     if groundx< -330:
         groundx=0
-
+    
+    #Call the move() method.
+    
     bee.display()  
     pipe1.display() 
     pipe2.display() 
